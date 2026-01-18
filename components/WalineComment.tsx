@@ -75,14 +75,14 @@ export default function WalineComment({
         comment: "留言",
       },
       emoji: [
-        'https://jsd.akams.cn/gh/norevi/waline-blobcatemojis@1.0/blobs',
-        "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/bmoji",
         "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/bilibili",
+        "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/bmoji",
+        "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/qq",
+        "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/tieba",
         "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/weibo",
-        'https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/qq',
-        'https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/tieba',
-        'https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/alus',
-        'https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/hoyoverse-hi3'
+        "https://unpkg.com/@waline/emojis@1.2.0/tw-emoji",
+        "https://jsd.akams.cn/gh/norevi/waline-blobcatemojis@1.0/blobs",
+        "https://jsd.akams.cn/gh/walinejs/emojis@1.4.0/alus",
       ],
       imageUploader: false, // 禁用图片上传
       search: false, // 禁用gif表情包搜索

@@ -1,6 +1,6 @@
 # Github Proxy
 
-基于 Next.js、React、Tailwind CSS 和 TypeScript 重构的 Github Proxy 网站。
+基于 Next.js、React、Tailwind CSS 和 TypeScript 搭建的的 Github Proxy 网站。
 
 ## 技术栈
 

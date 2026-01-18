@@ -55,7 +55,7 @@ export const LATENCY_SOURCE_CLIENT = 'client'; // 客户端检测延迟
 export const LATENCY_CACHE_DURATION = 60 * 60 * 1000; // 客户端检测结果缓存60分钟
 
 // Waline 评论配置
-export const WALINE_SERVER_URL = 'https://waline.akams.cn'; // Waline服务器地址
+export const WALINE_SERVER_URL = 'https://waline.jursin.top/'; // Waline服务器地址
 
 // Umami 访问统计配置
 export const UMAMI_WEBSITE_ID = 'daefb51d-9941-44e7-9ff5-c197263ededb'; // 在 Umami 中创建网站后获取的 Website ID，留空则禁用统计

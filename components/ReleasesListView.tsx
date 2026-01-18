@@ -15,7 +15,7 @@ export default function ReleasesListView({ releases, repoName, selectedDomain }:
   // ============================================================
   // State Declarations
   // ============================================================
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(0);
 
   // ============================================================
   // 格式化工具函数
@@ -95,7 +95,7 @@ export default function ReleasesListView({ releases, repoName, selectedDomain }:
             {/* Left: Repo Icon + Name */}
             <div className="flex items-center gap-3 flex-1">
               {/* Release Icon */}
-              <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center shrink-0">
                 <Tag className="w-5 h-5 text-green-600 dark:text-green-400" />
               </div>
               
@@ -119,7 +119,7 @@ export default function ReleasesListView({ releases, repoName, selectedDomain }:
               {/* Files Button */}
               <button
                 onClick={() => toggleExpand(index)}
-                className={`flex items-center gap-2 px-6 py-2 rounded-lg transition-all min-w-[160px] ${
+                className={`flex items-center gap-2 px-6 py-2 rounded-lg transition-all min-w-40 ${
                   expandedIndex === index
                     ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
@@ -152,7 +152,7 @@ export default function ReleasesListView({ releases, repoName, selectedDomain }:
           {/* Assets List - Expandable */}
           <div
             className={`transition-all duration-300 ease-in-out overflow-hidden ${
-              expandedIndex === index ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+              expandedIndex === index ? 'max-h-500 opacity-100' : 'max-h-0 opacity-0'
             }`}
           >
             <div className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">

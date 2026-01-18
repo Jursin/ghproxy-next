@@ -5,6 +5,8 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+pnpm-workspace.yaml
+pnpm-lock.yaml
 
 # testing
 /coverage
@@ -38,3 +40,5 @@ yarn-error.log*
 next-env.d.ts
 
 /docs/
+
+.qoder/

@@ -43,6 +43,9 @@ export default function AboutPage() {
                 GitHub Proxy 是一个免费的 GitHub 文件加速下载代理服务，旨在解决国内访问 GitHub 资源速度慢、下载困难的问题。
                 通过智能代理技术，为用户提供快速、稳定的 GitHub 文件访问体验，支持 Releases、Raw、Archive 等多种资源类型的下载加速。
               </p>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                本站复刻自 <a href="https://github.com/oopsunix/ghproxy-next" className="underline underline-offset-2 hover:text-blue-600 dark:hover:text-blue-400">oopsunix/ghproxy-next</a>，并在此基础上进行优化和改进。
+              </p>
             </section>
 
             {/* 核心功能 */}
@@ -52,7 +55,7 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
+                  <div className="shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-1">
                       多资源类型支持
@@ -64,7 +67,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
+                  <div className="shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-1">
                       智能链接转换
@@ -76,7 +79,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
+                  <div className="shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-1">
                       Releases 列表展示
@@ -88,7 +91,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="flex items-start">
-                  <div className="flex-shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
+                  <div className="shrink-0 w-2 h-2 mt-2 rounded-full bg-blue-500 dark:bg-blue-400"></div>
                   <div className="ml-4">
                     <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-1">
                       深色模式支持
@@ -237,7 +240,7 @@ export default function AboutPage() {
                     💡 服务稳定性说明
                   </h3>
                   <p className="text-sm text-purple-700 dark:text-purple-300">
-                    本服务依赖第三方代理节点，可能会出现不稳定的情况。如遇问题，请稍后重试或联系我们反馈。
+                    本服务依赖第三方代理节点，可能会出现不稳定的情况。如遇问题，请稍后重试或提交 Issue 反馈。
                   </p>
                 </div>
               </div>
@@ -249,7 +252,7 @@ export default function AboutPage() {
                 项目愿景
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                我们致力于为开发者提供更便捷的 GitHub 资源访问方式，消除地域限制带来的技术壁垒。
+                本站致力于为开发者提供更便捷的 GitHub 资源访问方式，消除地域限制带来的技术壁垒。
                 通过持续优化服务质量和用户体验，让每一位开发者都能畅快地获取开源资源，促进技术交流与创新。
               </p>
             </section>
@@ -260,7 +263,7 @@ export default function AboutPage() {
                 参与贡献
               </h2>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
-                我们欢迎任何形式的贡献，包括但不限于：
+                欢迎任何形式的贡献，包括但不限于：
               </p>
               <ul className="list-disc list-inside ml-4 space-y-2 text-gray-700 dark:text-gray-300">
                 <li>提交代码改进和功能增强</li>
@@ -269,7 +272,7 @@ export default function AboutPage() {
                 <li>分享使用经验</li>
               </ul>
               <p className="text-gray-700 dark:text-gray-300 leading-relaxed mt-4">
-                如果您想参与项目开发或有任何问题，请访问我们的 GitHub 仓库或通过
+                如果您想参与项目开发或有任何问题，请访问 GitHub 仓库或通过
                 <a href="/contact" className="text-blue-600 dark:text-blue-400 hover:underline mx-1">
                   联系我们
                 </a>

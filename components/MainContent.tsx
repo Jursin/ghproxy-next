@@ -481,6 +481,59 @@ export default function MainContent({}: MainContentProps = {}) {
     });
   }, []);
 
+  // ============================================================
+  // URL 参数处理
+  // ============================================================
+
+  // 页面加载时检测 URL 参数并自动触发操作
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const urlInput = searchParams.get('url');
+    const urlFetchReleases = searchParams.get('fetchReleases');
+
+    if (urlInput) {
+      // 自动填充输入框
+      setInputValue(urlInput);
+      setIsExpanded(true);
+
+      // 如果 fetchReleases 参数为 true，设置为获取 Releases 模式
+      if (urlFetchReleases === 'true') {
+        setFetchReleases(true);
+        localStorage.setItem('fetchReleases', 'true');
+
+        // 异步触发获取 Releases（等待输入框值更新）
+        setTimeout(() => {
+          // 验证 URL 并提取仓库信息
+          if (isGitHubComDomain(urlInput)) {
+            const repoInfo = extractRepoInfo(urlInput);
+            if (repoInfo) {
+              // 触发获取 Releases
+              setIsLoading(true);
+              fetchGitHubReleases(repoInfo.user, repoInfo.repo)
+                .then((releasesData) => {
+                  setReleases(releasesData);
+                  setRepoName(repoInfo.repo);
+                })
+                .catch((error) => {
+                  if (error instanceof Error) {
+                    setInputError(error.message);
+                  } else {
+                    setInputError("获取 Releases 失败");
+                  }
+                  setReleases([]);
+                })
+                .finally(() => {
+                  setIsLoading(false);
+                });
+            }
+          }
+        }, 0);
+      }
+    }
+  }, []);
+
   // 保存节点选择到 localStorage
   useEffect(() => {
     if (selectedNode) {
@@ -697,6 +750,18 @@ export default function MainContent({}: MainContentProps = {}) {
     if (value && !isExpanded) {
       setIsExpanded(true);
     }
+
+    // 更新 URL 参数（实时更新）
+    if (typeof window !== 'undefined') {
+      const url = new URL(window.location.href);
+      if (value.trim()) {
+        url.searchParams.set('url', value);
+      } else {
+        url.searchParams.delete('url');
+        url.searchParams.delete('fetchReleases');
+      }
+      window.history.replaceState({}, '', url.toString());
+    }
   }
 
   /**
@@ -748,6 +813,12 @@ export default function MainContent({}: MainContentProps = {}) {
       // 清除错误信息
       setInputError("");
       setIsLoading(true);
+
+      // 更新 URL 参数，反映当前的获取 Releases 状态
+      const url = new URL(window.location.href);
+      url.searchParams.set('url', inputValue);
+      url.searchParams.set('fetchReleases', 'true');
+      window.history.replaceState({}, '', url.toString());
       
       try {
         // 调用 API 获取 Releases
@@ -773,6 +844,12 @@ export default function MainContent({}: MainContentProps = {}) {
       
        // 获取代理链接
       const proxyUrl = getProxyUrl(inputValue);
+
+      // 更新 URL 参数
+      const url = new URL(window.location.href);
+      url.searchParams.set('url', inputValue);
+      url.searchParams.delete('fetchReleases');
+      window.history.replaceState({}, '', url.toString());
       
       // 在新标签页打开
       window.open(proxyUrl, '_blank');
@@ -877,7 +954,7 @@ export default function MainContent({}: MainContentProps = {}) {
   
   return (
     <main className="flex-1 py-8 px-4 sm:px-6 lg:px-8 transition-all duration-500">
-      <div className="w-full max-w-[1000px] mx-auto">
+      <div className="w-full max-w-250 mx-auto">
         {/* Container for initial centered content */}
         <div
           className={`transition-all duration-700 ease-in-out ${
@@ -912,7 +989,7 @@ export default function MainContent({}: MainContentProps = {}) {
 
           {/* Input Section */}
           <div
-            className={`transition-all duration-700 ease-in-out w-full relative z-[10001] ${
+            className={`transition-all duration-700 ease-in-out w-full relative z-10001 ${
               isExpanded ? "mb-8" : "mb-0 max-w-2xl"
             }`}
           >
@@ -939,7 +1016,7 @@ export default function MainContent({}: MainContentProps = {}) {
               {/* Download Button */}
               <button 
                 onClick={handleDownload}
-                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed shrink-0 h-[48px]"
+                className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed shrink-0 h-12"
                 disabled={!inputValue.trim() || !!inputError}
               >
                 {getButtonText()}
@@ -958,7 +1035,7 @@ export default function MainContent({}: MainContentProps = {}) {
         >
           {/* Domain Selector - Custom Dropdown */}
           <div
-            className={`transition-all duration-700 ease-in-out delay-75 relative z-[9999] ${
+            className={`transition-all duration-700 ease-in-out delay-75 relative z-9999 ${
               isExpanded
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
@@ -1026,7 +1103,7 @@ export default function MainContent({}: MainContentProps = {}) {
                 {/* Custom Dropdown Menu - 限制显示 10 条，支持滚动 */}
                 {!isLoadingDomains && (
                   <div
-                    className={`absolute z-[9999] w-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl transition-all duration-300 origin-top ${
+                    className={`absolute z-9999 w-full mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl transition-all duration-300 origin-top ${
                       showDropdown
                         ? "opacity-100 scale-y-100"
                         : "opacity-0 scale-y-0 max-h-0"
@@ -1114,6 +1191,17 @@ export default function MainContent({}: MainContentProps = {}) {
                   const newValue = !fetchReleases;
                   setFetchReleases(newValue);
                   localStorage.setItem('fetchReleases', String(newValue));
+
+                  // 更新 URL 参数
+                  if (typeof window !== 'undefined') {
+                    const url = new URL(window.location.href);
+                    if (newValue && inputValue.trim()) {
+                      url.searchParams.set('fetchReleases', 'true');
+                    } else {
+                      url.searchParams.delete('fetchReleases');
+                    }
+                    window.history.replaceState({}, '', url.toString());
+                  }
                 }}
                 className={`w-full md:w-auto flex items-center justify-center md:justify-start gap-2 px-4 py-3 rounded-lg border transition-all whitespace-nowrap ${
                   fetchReleases
@@ -1147,7 +1235,7 @@ export default function MainContent({}: MainContentProps = {}) {
                 : "opacity-0 translate-y-8"
             }`}
           >
-            <AlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-500 flex-shrink-0 mt-0.5" />
+            <AlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-500 shrink-0 mt-0.5" />
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               公益服务，请勿滥用。加速源来自热心网友贡献，在此感谢每一位分享者的慷慨奉献！
             </p>
