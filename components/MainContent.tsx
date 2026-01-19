@@ -3,7 +3,7 @@
 // ============================================================
 // Imports
 // ============================================================
-import { ChevronDown, AlertCircle, Check, Gauge, Copy, ExternalLink, Loader2, RefreshCw } from "lucide-react";
+import { ChevronDown, AlertCircle, Check, Copy, ExternalLink, Loader2, RefreshCw } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import type { DomainNode, Release } from './types';
 import { 
@@ -13,7 +13,6 @@ import {
   MAX_DROPDOWN_HEIGHT,
   LATENCY_TEST_IMAGE_URL,
   LATENCY_TEST_TIMEOUT,
-  LATENCY_SOURCE_API,
   LATENCY_SOURCE_CLIENT,
   LATENCY_CACHE_DURATION,
   API_FETCH_INTERVAL,

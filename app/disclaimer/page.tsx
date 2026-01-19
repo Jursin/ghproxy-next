@@ -37,7 +37,7 @@ export default function Disclaimer() {
             {/* 重要提示 */}
             <section className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 rounded">
               <div className="flex items-start">
-                <AlertTriangle className="w-6 h-6 text-yellow-600 dark:text-yellow-400 mr-3 flex-shrink-0 mt-0.5" />
+                <AlertTriangle className="w-6 h-6 text-yellow-600 dark:text-yellow-400 mr-3 shrink-0 mt-0.5" />
                 <div>
                   <h3 className="text-lg font-semibold text-yellow-800 dark:text-yellow-300 mb-2">
                     重要提示

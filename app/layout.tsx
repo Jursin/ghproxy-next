@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import UmamiAnalytics from "@/components/UmamiAnalytics";
 
 export const metadata: Metadata = {
   title: "GitHub 文件下载加速代理 - GitHub Proxy",
@@ -24,7 +23,6 @@ export default function RootLayout({
     <html lang="zh-CN" suppressHydrationWarning>
       <body className="antialiased">
         {children}
-        <UmamiAnalytics />
       </body>
     </html>
   );

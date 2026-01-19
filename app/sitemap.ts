@@ -8,7 +8,7 @@ export const dynamic = 'force-static'
  * Next.js 会自动在构建时生成 sitemap.xml 文件
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://github.akams.cn' // 请替换为你的实际域名
+  const baseUrl = 'https://ghproxy.jursin.top' // 请替换为你的实际域名
   
   // 定义所有静态页面路由
   const routes = [

@@ -5,7 +5,7 @@
 
 import { ChevronDown, Download, ExternalLink, Clock, Tag } from "lucide-react";
 import { useState } from "react";
-import type { Release, ReleasesListViewProps } from './types';
+import type { ReleasesListViewProps } from './types';
 import { FILE_SIZE_UNITS, FILE_SIZE_BASE, BEIJING_TIMEZONE_OFFSET } from './constants';
 
 // ============================================================
